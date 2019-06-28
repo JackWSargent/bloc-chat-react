@@ -7,8 +7,9 @@ class RoomList extends Component {
         this.state = {
             rooms: [],
             name: '',
+            activatedRoom: '',
         }
-        this.roomsRef = this.props.firebase.database().ref('rooms');
+        this.roomsRef = this.props.firebase.database().ref('rooms');  
     }
 
     componentDidMount() {
@@ -20,11 +21,24 @@ class RoomList extends Component {
     }
 
     createNewRoom(e) {
-        e.PreventDefault(); //Prevent new tab opening
+        e.preventDefault(); //Prevent new tab opening
         if(!this.state.name) return; //If no name,exit
-        const newRoom = e.target.value; //Set new room to the incoming value
-        this.roomsRef.push({newRoom}); //Push to firebase rooms object 
-        this.state.name = '';
+        const newRoom = this.state.name; //Set new room to the incoming value
+        // console.log("new room " + newRoom);
+        this.roomsRef.push({name: newRoom}); //Push to firebase rooms object 
+        this.setState({name: ''});
+    }
+
+    handleNewNameChange(e) {
+        this.setState({name: e.target.value});
+    }
+
+    handleRoomListClick(index) {
+        const room = this.state.rooms[index];
+        this.setState({activatedRoom: room.name});
+        this.props.activeRoom(room.key, room.name);
+        // console.log(this.state.activatedRoom + " is the name of the room");
+        // console.log(index);
     }
 
     render () {
@@ -32,24 +46,34 @@ class RoomList extends Component {
             <div>
                 <section className="room-list">
                     <div className="room-controls">
-                        <form className="new-room" onSubmit={this.createNewRoom(bind)}>
+                        <form className="new-room" onSubmit={this.createNewRoom.bind(this)}>
                             <input
-                            id="room-name"
+                            id="submitRoomForm"
                             type="text"
                             name="name"
                             placeholder="Add a new room"
-                            ref={newroom => this.name = newroom}
+                            ref={nroom => this.name = nroom}
                             value={this.state.name}
-                            onChange={this.handleNameChange.bind(this)}/>
+                            onChange={this.handleNewNameChange.bind(this)}/>
                             <button id="submitRoomButton">Submit</button>
                         </form>
                     </div>
-                    <tbody className="rows">
-                    {
-                        this.state.rooms.map( (room, index) => 
-                        <tr className='room-name'>{room.name}</tr>
-                    )}
-                    </tbody>
+                    <div className="room-list-names">
+                        
+                        {
+                            this.state.rooms.map( (room, index) => {
+                                return (<div>
+                                    <span
+                                    key={room.key} 
+                                    onClick={() => this.handleRoomListClick(index)} 
+                                    className='room-name'
+                                    >
+                                    {room.name}
+                                    </span>
+                                    <br/>
+                                    </div>
+                                )})}
+                    </div>
                 </section>
             </div>
         );
