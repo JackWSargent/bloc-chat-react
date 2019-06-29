@@ -70,7 +70,7 @@ class MessageList extends Component {
         return (number < 10) ? "0" + number : number; // so minutes are 4:01 instead of 4:1
     }
 
-    getTime() {
+    getTime() {//
         const date = new Date(); 
         let hrs = date.getHours();
         let time = hrs >= 12 ? "PM" : "AM"; 
