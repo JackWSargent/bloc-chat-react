@@ -34,11 +34,11 @@ class RoomList extends Component {
     }
 
     handleRoomListClick(index) {
+        //console.log("clicked on room");
+        
         const room = this.state.rooms[index];
         this.setState({activatedRoom: room.name});
         this.props.activeRoom(room.key, room.name);
-        // console.log(this.state.activatedRoom + " is the name of the room");
-        // console.log(index);
     }
 
     render () {
@@ -48,23 +48,22 @@ class RoomList extends Component {
                     <div className="room-controls">
                         <form className="new-room" onSubmit={this.createNewRoom.bind(this)}>
                             <input
-                            id="submitRoomForm"
+                            className="input-field"
+                            id="submitNewRoomForm"
                             type="text"
                             name="name"
                             placeholder="Add a new room"
-                            ref={nroom => this.name = nroom}
+                            ref={newroom => this.name = newroom}
                             value={this.state.name}
                             onChange={this.handleNewNameChange.bind(this)}/>
-                            <button id="submitRoomButton">Submit</button>
+                            <button id="submitRoomButton" className="button">Submit</button>
                         </form>
                     </div>
                     <div className="room-list-names">
-                        
                         {
                             this.state.rooms.map( (room, index) => {
-                                return (<div>
+                                return (<div key={room.key} >
                                     <span
-                                    key={room.key} 
                                     onClick={() => this.handleRoomListClick(index)} 
                                     className='room-name'
                                     >

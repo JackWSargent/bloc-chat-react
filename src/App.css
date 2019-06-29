@@ -50,11 +50,11 @@
 }
 
 .room-controls {
-  width: 225px; /* Set the width of the sidebar */
-  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  width: 225px; 
+  position: fixed; 
   bottom: 0;
   left: 0;
-  background-color: rgb(75, 75, 75); /* Black */
+  background-color: rgb(75, 75, 75);
   padding: 1.5%;
 }
 
@@ -71,4 +71,58 @@
 
 .message-username {
   font-size: 70%;
+}
+
+.button {
+  background:  rgb(255, 255, 255);
+  color: black;
+  border: none;
+  padding: 8px 10px;
+}
+
+.button-sign-in {
+  background:  rgb(255, 255, 255);
+  color: black;
+  border: none;
+  padding: 8px 10px;
+  font-size: 75%;
+}
+
+.input-field {
+  background:  rgb(255, 255, 255);
+  color: black;
+  border: none;
+  padding: 8px 12px;
+}
+
+.user-component {
+  position: fixed; 
+  right: 0;
+  top: 0;
+  z-index: 1;
+}
+
+.message-sender{
+  bottom: 0;
+  z-index: 1;
+}
+
+.send-message {
+  background:  #282c34;
+  color: white;
+  border: none;
+  padding: 8px 10px;
+  font-size: 75%;
+  bottom: 0;
+  z-index: 1;
+}
+
+.input-field-message{
+  background:  #282c34;
+  color: white;
+  border-style: solid;
+  padding: 8px 10px;
+  font-size: 75%;
+  bottom: 0;
+  z-index: 1;
 }
