@@ -45,6 +45,11 @@
   color: rgb(255, 255, 255);
 }
 
+
+.bloc-chat {
+  color: rgb(255, 255, 255);
+}
+
 .room-name:hover {
   color: rgb(235, 230, 230);
 }
@@ -105,6 +110,7 @@
 .message-sender{
   bottom: 0;
   z-index: 1;
+  padding-top: 10%;
 }
 
 .send-message {

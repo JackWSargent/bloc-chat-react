@@ -103,7 +103,8 @@ class MessageList extends Component {
     render() {
         return (
             <section>
-                <h1 className="room-name-label">{this.props.RoomName}</h1>
+                <h1 className="bloc-chat">Bloc Chat</h1>
+                <h2 className="room-name-label">{this.props.RoomName}</h2>
                 <div>
                     {this.handleRoomClick().map((message) => {
                             return (
